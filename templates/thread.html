@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'thread_macro.html' import thread_macro %}
+    <div class="boardBanner">
+    <div class="boardTitle">/{{ board.name }}/ - {{ board.full_name }}</div>
+    {% if board.description %}
+        <div class="boardSubtitle">{{ board.description }}
+    {% endif %}
+    </div>
+</div>
+<hr class="abovePostForm">
+<form name="post" action="{{ url_for('add_reply', board_name=board.name, thread_id=thread.board_id) }}" method="post" enctype="multipart/form-data">
+    <table class="postForm" id="postForm" style="display: table;">
+        <tbody>
+        <tr data-type="Name">
+            <td>Name</td>
+            <td><input name="username" tabindex="1" placeholder="Anonymous" type="text"></td>
+        </tr>
+        <tr data-type="Options">
+            <td>Options</td>
+            <td><input name="options" tabindex="2" type="text"><input value="Post" tabindex="6" type="submit"></td>
+        </tr>
+        <tr data-type="Comment">
+            <td>Comment</td>
+            <td><textarea name="content" cols="48" rows="4" tabindex="4" wrap="soft"></textarea></td>
+        </tr>
+        <tr data-type="File">
+            <td>File</td>
+            <td><input id="postFile" name="upfile" tabindex="7" type="file"></td>
+        </tr>
+    </table>
+</form>
+
+    {{ thread_macro(thread, False) }}
+
+{% endblock %}

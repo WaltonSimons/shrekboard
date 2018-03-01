@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+    {% block head %}
+
+    {% endblock %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% endif %}
+</head>
+
+<body>
+<div id="boardNavDesktop" class="desktop">
+    <span class="boardList">
+        [
+        {% for board in g.boards %}
+            <a href="{{ url_for('board_view', board_name=board.name) }}" title="{{ board.full_name }}">{{ board.name }}</a>
+            {% if  loop.index != g.boards|length %}/{% endif %}
+        {% endfor %}
+        ]
+    </span>
+    <span class="navSettings">
+        {% if g.authorized %}
+            <a href="{{ url_for('admin_panel') }}" title="Admin Panel">Admin Panel</a>
+        {% endif %}
+    </span>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+<footer class="footer">
+    <hr><hr>
+    Powered by Shrekboard
+</footer>
+
+</body>
+<script src="{{ url_for('static', filename='javascript/scripts.js') }}"></script>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="boardBanner">
+        <div class="boardTitle">Create a board</div>
+        </div>
+    </div>
+    <form name="post" action="{{ url_for('add_board') }}" method="post" enctype="multipart/form-data">
+        <table class="postForm" id="postForm" style="display: table;">
+            <tbody>
+            <tr>
+                <td>Name</td>
+                <td><input name="board_name" tabindex="1" type="text"></td>
+            </tr>
+            <tr>
+                <td>Full name</td>
+                <td><input name="full_name" tabindex="2" type="text"></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input name="description" tabindex="2" type="text"></td>
+            </tr>
+            <tr>
+                <td></td><td><input value="Create" tabindex="6" type="submit"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+        <div class="boardBanner">
+        <div class="boardTitle">Ban IP</div>
+        </div>
+    </div>
+    <form name="post" action="{{ url_for('ban_ip') }}" method="post" enctype="multipart/form-data">
+        <table class="postForm" id="postForm" style="display: table;">
+            <tbody>
+            <tr>
+                <td>IP</td>
+                <td><input name="ip" tabindex="2" type="text"></td>
+                <td><input value="BAN" tabindex="6" type="submit"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}

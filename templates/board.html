@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'thread_macro.html' import thread_macro %}
+
+    <div class="boardBanner">
+        <div class="boardTitle">/{{ board.name }}/ - {{ board.full_name }}</div>
+        {% if board.description %}
+            <div class="boardSubtitle">{{ board.description }}
+        {% endif %}
+        </div>
+    </div>
+    <hr class="abovePostForm">
+    <form name="post" action="{{ url_for('create_thread', board_name=board.name) }}" method="post" enctype="multipart/form-data">
+        <table class="postForm" id="postForm" style="display: table;">
+            <tbody>
+            <tr data-type="Name">
+                <td>Name</td>
+                <td><input name="username" tabindex="1" placeholder="Anonymous" type="text"></td>
+            </tr>
+            <tr data-type="Options">
+                <td>Options</td>
+                <td><input name="options" tabindex="2" type="text"></td>
+            </tr>
+            <tr data-type="Subject">
+                <td>Subject</td>
+                <td><input name="subject" tabindex="3" type="text"><input value="Post" tabindex="6" type="submit"></td>
+            </tr>
+            <tr data-type="Comment">
+                <td>Comment</td>
+                <td><textarea name="content" cols="48" rows="4" tabindex="4" wrap="soft"></textarea></td>
+            </tr>
+            <tr data-type="File">
+                <td>File</td>
+                <td><input id="postFile" name="upfile" tabindex="7" type="file" required="1"></td>
+            </tr>
+        </table>
+    </form>
+
+    <div class="board">
+        {% for thread in board.get_page(page_number) %}
+            {{ thread_macro(thread, True) }}
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="pagelist desktop">
+        <div class="pages">
+            {% for page in range(board.last_page) %}
+                [<strong><a href="{{ url_for('board_view', board_name=board.name, page_number=page) }}">{{ page }}</a></strong>]
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

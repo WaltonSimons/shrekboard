@@ -1,0 +1,222 @@
+body {
+    background: #ffe;
+    color: #800;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+}
+
+div#boardNavDesktop a {
+    font-weight: normal;
+    padding: 1px;
+    text-decoration: none;
+    color: #800000;
+    font-size: 9pt;
+}
+
+.navSettings {
+    float: right;
+}
+
+div#boardNavDesktop {
+    font-size: 7pt;
+    color: #B86;
+    display: block;
+}
+
+.footer {
+    font-size: 8pt;
+    color: #800000;
+    clear: both;
+    position: relative;
+    z-index: 10;
+}
+
+div.boardBanner {
+    text-align: center;
+    clear: both;
+}
+
+div.boardTitle {
+    font-family: Tahoma, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-top: 0px;
+}
+
+div.boardSubtitle {
+    font-size: x-small;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #D9BFB7;
+    height: 0;
+}
+
+hr.abovePostForm {
+    width: 90%;
+}
+
+table {
+    border-spacing: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td:first-child {
+    background-color: #EA8;
+    color: #800;
+    font-weight: bold;
+    border: 1px solid #800;
+    padding: 0 5px;
+    font-size: 10pt;
+}
+
+td {
+    margin: 0px;
+    padding: 0px;
+    font-size: 10pt;
+}
+
+table {
+    border-spacing: 1px;
+}
+
+textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+input[type="text"] {
+    width: 244px;
+}
+
+#postForm textarea {
+    width: 302px;
+}
+
+input[type="text"], input[type="password"], table.postForm > tbody textarea {
+    margin: 0px;
+    margin-right: 2px;
+    padding: 2px 4px 3px 4px;
+    border: 1px solid #AAA;
+    outline: none;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+}
+
+div.opContainer {
+    display: inline;
+}
+
+div.op {
+    display: inline;
+}
+
+div.post {
+    margin: 4px 0;
+    overflow: hidden;
+}
+
+div.post div.file .fileThumb {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+a, a:visited {
+    color: #00E;
+    text-decoration: none;
+}
+
+div.post div.postInfo span.subject {
+    color: #cc1105;
+    font-weight: bold;
+}
+
+span.nameBlock span.name {
+    color: #117743;
+    font-weight: bold;
+}
+
+div.post div.postInfo span.postNum a {
+    text-decoration: none;
+    color: #800000;
+}
+
+a.replylink:not(:hover), div#absbot a:not(:hover) {
+    color: #00E !important;
+}
+
+div.post blockquote.postMessage {
+    display: block;
+}
+
+div.board > hr {
+    clear: both;
+}
+
+div.thread {
+    margin: 0px;
+    clear: both;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #D9BFB7;
+    height: 0;
+}
+
+div.reply {
+    background-color: #f0e0d6;
+    border: 1px solid #D9BFB7;
+    border-left: none;
+    border-top: none;
+    display: table;
+    padding: 2px;
+}
+
+div.sideArrows {
+    color: #e0bfb7;
+    float: left;
+    margin-right: 2px;
+    margin-top: 0px;
+    margin-left: 2px;
+}
+
+span.summary {
+    color: #707070;
+    margin-top: 10px;
+}
+
+span.trip {
+    color: #228854;
+}
+
+.filethumb {
+    max-height: 300px;
+    max-width: 250px;
+}
+
+blockquote > p {
+    margin: 0;
+    padding: 0;
+}
+
+div.pagelist {
+    font-size: 13px !important;
+    margin: 0;
+    padding: 3px 7px;
+    float: left;
+    border: none;
+    background: #F0E0D6;
+    border-right: 1px solid #D9BFB7;
+    border-bottom: 1px solid #D9BFB7;
+    list-style: none;
+    overflow: hidden;
+    color: #B86;
+    clear: both;
+}

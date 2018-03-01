@@ -1,0 +1,92 @@
+{% macro thread_macro(thread, list_view) %}
+<hr>
+<div class="thread" id="t{{ thread.main_reply.board_id }}">
+    <div class="postContainer opContainer" id="pc{{ thread.main_reply.board_id }}">
+        <div id="p{{ thread.main_reply.board_id }}" class="post op">
+            <div class="file" id="f{{ thread.main_reply.board_id }}">
+                <div class="fileText" id="fT{{ thread.main_reply.board_id }}">File: <a
+                        href="/uploads/{{ thread.main_reply.filename }}"
+                        target="_blank">{{ thread.main_reply.original_filename }}</a>
+                    (s r)
+                </div>
+                <a class="fileThumb" href="{{ url_for('uploaded_file', filename=thread.main_reply.filename) }}" target="_blank"><img
+                        src="/uploads/{{ thread.main_reply.thumbnail_name }}">
+                </a>
+            </div>
+            <div class="postInfo desktop" id="pi{{ thread.main_reply.board_id }}">
+                <input type="checkbox" name="{{ thread.main_reply.board_id }}" value="delete">
+                {% if thread.main_reply.subject %}
+                    <span class="subject">{{ thread.main_reply.subject }}</span>
+                {% endif %}
+                <span class="nameBlock">
+                    <span class="name">{{ thread.main_reply.username }}</span>
+                    {% if thread.main_reply.tripcode %}
+                        <span class="trip">!{{ thread.main_reply.tripcode }}</span>
+                    {% endif %}
+                    {% if g.authorized %}
+                        <span class="ip">({{ thread.main_reply.user_ip }})</span>
+                    {% endif %}
+                </span>
+                <span class="dateTime">{{ thread.main_reply.date }}</span>
+                <span class="postNum desktop">
+                    <a href="thread/{{ thread.main_reply.board_id }}#p{{ thread.main_reply.board_id }}"
+                       title="Link to this post">No.</a>
+                    <a href="thread/{{ thread.main_reply.board_id }}#q{{ thread.main_reply.board_id }}"
+                       title="Reply to this post">{{ thread.main_reply.board_id }}</a>
+                    <span>[<a href="thread/{{ thread.main_reply.board_id }}" class="replylink">Reply</a>]</span>
+                </span>
+            </div>
+            <blockquote class="postMessage" id="m{{ thread.main_reply.board_id }}">
+                {% autoescape false %}{{ thread.main_reply.html_content }}{% endautoescape %}
+            </blockquote>
+        </div>
+    </div>
+    {% if list_view and thread.last_replies|length < thread.replies|length - 1 %}
+        <span class="summary desktop">
+        <span class="">{{ thread.replies|length - thread.last_replies|length - 1 }} replies omitted. <a
+                href="{{ url_for('thread_view', board_name=thread.board.name, thread_id=thread.main_reply.board_id) }}"
+                class="replylink">Click here</a> to view.</span>
+        </span>
+    {% endif %}
+    {% set replies = thread.last_replies if list_view else thread.all_replies %}
+    {% for reply in replies %}
+        <div class="postContainer replyContainer" id="pc{{ reply.id }}">
+            <div class="sideArrows">&gt;&gt;</div>
+            <div id="p{{ reply.board_id }}" class="post reply">
+                <div class="postInfo desktop">
+                    <input name="{{ reply.board_id }}" value="delete" type="checkbox">
+                    <span class="nameBlock">
+                    <span class="name">{{ reply.username }}</span>
+                        {% if reply.tripcode %}
+                            <span class="trip">!{{ reply.tripcode }}</span>
+                        {% endif %}
+                        {% if g.authorized %}
+                            <span class="ip">({{ reply.user_ip }})</span>
+                        {% endif %}
+                </span>
+                    <span class="dateTime">{{ reply.date }}</span>
+                    <span class="postNum desktop">
+                    <a href="{{ url_for('thread_view', board_name=thread.board.name, thread_id=thread.board_id) }}#p{{ reply.board_id }}" title="Link to this post">No.</a>
+                    <a href="" title="Reply to this post">{{ reply.board_id }}</a>
+                </span>
+                </div>
+                {% if reply.filename %}
+                    <div class="file" id="f{{ reply.board_id }}">
+                        <div class="fileText" id="fT{{ reply.board_id }}">File: <a href="{{ url_for('uploaded_file', filename=reply.filename) }}"
+                                                                                   target="_blank">{{ reply.original_filename }}</a>
+                            (s r)
+                        </div>
+                        <a class="fileThumb" href="/uploads/{{ reply.filename }}" target="_blank">
+                            <img src="/uploads/{{ reply.thumbnail_name }}">
+                        </a></div>
+                {% endif %}
+                <blockquote class="postMessage" id="m{{ reply.board_id }}">
+                    {% for line in reply.content_lines %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endmacro %}
