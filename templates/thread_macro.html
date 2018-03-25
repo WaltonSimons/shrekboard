@@ -13,7 +13,7 @@
                         src="/uploads/{{ thread.main_reply.thumbnail_name }}">
                 </a>
             </div>
-            <div class="postInfo desktop" id="pi{{ thread.main_reply.board_id }}">
+            <div class="postInfo" id="pi{{ thread.main_reply.board_id }}">
                 <input type="checkbox" name="{{ thread.main_reply.board_id }}" value="delete">
                 {% if thread.main_reply.subject %}
                     <span class="subject">{{ thread.main_reply.subject }}</span>
@@ -28,7 +28,7 @@
                     {% endif %}
                 </span>
                 <span class="dateTime">{{ thread.main_reply.date }}</span>
-                <span class="postNum desktop">
+                <span class="postNum">
                     <a href="thread/{{ thread.main_reply.board_id }}#p{{ thread.main_reply.board_id }}"
                        title="Link to this post">No.</a>
                     <a href="thread/{{ thread.main_reply.board_id }}#q{{ thread.main_reply.board_id }}"
@@ -42,7 +42,7 @@
         </div>
     </div>
     {% if list_view and thread.last_replies|length < thread.replies|length - 1 %}
-        <span class="summary desktop">
+        <span class="summary">
         <span class="">{{ thread.replies|length - thread.last_replies|length - 1 }} replies omitted. <a
                 href="{{ url_for('thread_view', board_name=thread.board.name, thread_id=thread.main_reply.board_id) }}"
                 class="replylink">Click here</a> to view.</span>
@@ -53,7 +53,7 @@
         <div class="postContainer replyContainer" id="pc{{ reply.id }}">
             <div class="sideArrows">&gt;&gt;</div>
             <div id="p{{ reply.board_id }}" class="post reply">
-                <div class="postInfo desktop">
+                <div class="postInfo">
                     <input name="{{ reply.board_id }}" value="delete" type="checkbox">
                     <span class="nameBlock">
                     <span class="name">{{ reply.username }}</span>
@@ -65,7 +65,7 @@
                         {% endif %}
                 </span>
                     <span class="dateTime">{{ reply.date }}</span>
-                    <span class="postNum desktop">
+                    <span class="postNum">
                     <a href="{{ url_for('thread_view', board_name=thread.board.name, thread_id=thread.board_id) }}#p{{ reply.board_id }}" title="Link to this post">No.</a>
                     <a href="" title="Reply to this post">{{ reply.board_id }}</a>
                 </span>

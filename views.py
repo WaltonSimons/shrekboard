@@ -39,6 +39,21 @@ def board_view(board_name, page_number=0):
     )
 
 
+@app.route('/<string:board_name>/catalog')
+def catalog_view(board_name, page_number=0):
+    boards = db.session.query(Board).filter_by(name=board_name)
+    if boards.count() < 1:
+        abort(404)
+    board = boards[0]
+    threads = db.session.query(Thread).filter_by(board_name=board_name)
+    return render_template(
+        "catalog.html",
+        board=board,
+        threads=threads,
+        title='/{}/ - {}'.format(board_name, board.full_name)
+    )
+
+
 @app.route('/add_board', methods=['POST'])
 def add_board():
     if request.method == 'POST':

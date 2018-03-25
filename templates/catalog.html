@@ -40,18 +40,17 @@
         <hr>
         [<a href="{{ url_for('catalog_view', board_name=board.name) }}">Catalog</a>]
     </div>
-    <div class="board">
-        {% for thread in board.get_page(page_number) %}
-            {{ thread_macro(thread, True) }}
+    <hr>
+    <div id="threads" contextmenu="ctxmenu-main">
+        {% for thread in threads %}
+            <div id="t{{ thread.main_reply.board_id }}" class="category-thread">
+                <a href="{{ url_for('thread_view', board_name=thread.board.name, thread_id=thread.main_reply.board_id) }}"><img alt=""
+                                                                     class="thumb"
+                                                                     src="/uploads/{{ thread.main_reply.thumbnail_name }}"></a>
+                <div class="teaser">{{ thread.main_reply.content[:150] }}</div>
+            </div>
         {% endfor %}
+        <div class="clear"></div>
     </div>
     <hr>
-    <div class="pagelist">
-        <div class="pages">
-            {% for page in range(board.last_page) %}
-                [<strong><a
-                    href="{{ url_for('board_view', board_name=board.name, page_number=page) }}">{{ page }}</a></strong>]
-            {% endfor %}
-        </div>
-    </div>
 {% endblock %}
